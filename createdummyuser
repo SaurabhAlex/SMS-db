@@ -1,0 +1,10 @@
+DECLARE @password VARBINARY(MAX);
+SET @password = CAST('Alexhdhj' AS VARBINARY(MAX));
+
+EXEC sp_createuser 
+    @u_name = 'Alex',
+    @email = 'alex@example.com',
+    @gender = 'Male',
+    @mobile_no = '9999999999',
+    @role_id = 2,
+    @u_password = @password;
