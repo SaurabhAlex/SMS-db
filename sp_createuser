@@ -1,0 +1,33 @@
+CREATE PROCEDURE [dbo].[sp_createuser]
+    @u_name      VARCHAR(100),
+    @email       VARCHAR(100),
+    @gender      VARCHAR(10) = NULL,
+    @mobile_no   VARCHAR(15) = NULL,
+    @role_id     INT = NULL,
+    @u_password  VARBINARY(MAX)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Insert user and return the new user_id
+    INSERT INTO [dbo].[User] (
+        u_name,
+        email,
+        gender,
+        mobile_no,
+        role_id,
+        u_password
+    )
+    VALUES (
+        @u_name,
+        @email,
+        @gender,
+        @mobile_no,
+        @role_id,
+        @u_password
+    );
+
+    -- Return inserted user_id
+    SELECT SCOPE_IDENTITY() AS user_id;
+END;
+GO
